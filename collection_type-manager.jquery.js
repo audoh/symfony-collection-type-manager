@@ -24,9 +24,18 @@
 			return $(this).data('allowAdd') === false ? false : true;
 		},
 
+		// Find the CSS selector used to identify child item elements, defaults to div.
+
 		'childSelector': function()
 		{
 			return $(this).data('itemSelector') !== undefined ? $(this).data('itemSelector') : 'div';
+		},
+
+		// Find the name of the prototype to use, defaults to __name__.
+
+		'prototypeName': function()
+		{
+			return $(this).data('prototypeName') !== undefined ? $(this).data('prototypeName') : '__name__';
 		},
 
 		// Add a new item to an element based on its data-prototype (from Symfony).
@@ -36,8 +45,7 @@
 			// Get prototype data.
 
 			var prototype = $(parent).data('prototype');
-			var prototypeName = fnMap.resolvePrototypeName(prototype);
-
+			var prototypeName = $(parent).collectionManager('prototypeName');
 			var childSelector = $(parent).collectionManager('childSelector');
 
 			// Build prototype with new id.
@@ -63,13 +71,6 @@
 			// Trigger add event.
 
 			$(parent).trigger('collection_add');
-		},
-
-		// Find the name of a prototype from the prototype string.
-
-		'resolvePrototypeName': function(prototype)
-		{
-			return prototype.match(/__[^_\s]*__/);
 		},
 
 		// Return an add button element.

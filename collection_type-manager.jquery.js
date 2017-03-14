@@ -26,7 +26,7 @@
 
 		'childSelector': function()
 		{
-			return $(this).data('childSelector') !== undefined ? $(this).data('childSelector') : 'div';
+			return $(this).data('itemSelector') !== undefined ? $(this).data('itemSelector') : 'div';
 		},
 
 		// Add a new item to an element based on its data-prototype (from Symfony).

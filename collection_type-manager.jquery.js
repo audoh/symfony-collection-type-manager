@@ -53,11 +53,7 @@
 
 			var item = $('<' + childTag + '/>').html($(prototype).html());
 
-			item.insertBefore($(this))
-
-			// Trigger add event.
-
-			$(parent).trigger('collection_add')
+			item.insertBefore($(this));
 
 			// Give the new element a delete button if allowed and update on it.
 
@@ -65,6 +61,10 @@
 				$(item).collectionManager('provideDeleteButton');
 
 			$(item).collectionManager('updateCollection');
+
+			// Trigger add event.
+
+			$(parent).trigger('collection_add');
 		},
 
 		// Find the name of a prototype from the prototype string.
@@ -163,6 +163,7 @@
 					.click(function()
 					{
 						$(deletable).remove();
+						$(deletable).parent().trigger('collection_delete');
 					})
 				;
 			}

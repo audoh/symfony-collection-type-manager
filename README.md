@@ -13,6 +13,7 @@ The easiest way to get started with the CollectionType Manager is to simply incl
   ***NOTE:** The default is 'div', which works for the default form template.*
 - Listen to `collection_add` and `collection_delete` events to react to user actions in other scripts.
 - Fine-tune whether to allow addition or deletion using the boolean attributes `data-allow-add` and `data-allow-delete`.
+- Change the prototype name using `data-prototype-name` to allow for subprototypes.
 
 ## Future plans
 

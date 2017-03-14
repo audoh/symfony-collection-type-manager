@@ -29,6 +29,11 @@
 			return $(this).data('childTag') !== undefined ? $(this).data('childTag') : 'div';
 		},
 
+		'childSelector': function()
+		{
+			return $(this).data('childSelector') !== undefined ? $(this).data('childSelector') : 'div':
+		},
+
 		// Add a new item to an element based on its data-prototype (from Symfony).
 
 		'addCollectionItem': function(parent)
@@ -39,10 +44,11 @@
 			var prototypeName = fnMap.resolvePrototypeName(prototype);
 
 			var childTag = $(parent).collectionManager('childTag');
+			var childSelector = $(parent).collectionManager('childSelector');
 
 			// Build prototype with new id.
 
-			var id = $(parent).children(childTag).length;
+			var id = $(parent).children(childSelector).length;
 
 	        // Replace __name__ with id.
 
@@ -171,7 +177,7 @@
 
 		// Updates stuff.
 
-		'updateCollection': function(childSelector)
+		'updateCollection': function()
 		{
 			// Get all applicable forms/form fragments.
 
@@ -190,13 +196,7 @@
 
 				if($(this).collectionManager('isDeleteAllowed'))
 				{
-					if(childSelector === undefined)
-					{
-						var childTag = $(parent).collectionManager('childTag');
-
-						childSelector = '> ' + childTag;
-					}
-
+					var childSelector = $(this).collectionManager('childSelector');
 					var children = $(this).find(childSelector);
 
 					children.each(function()

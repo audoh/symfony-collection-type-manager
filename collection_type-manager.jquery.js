@@ -24,14 +24,9 @@
 			return $(this).data('allowAdd') === false ? false : true;
 		},
 
-		'childTag': function()
-		{
-			return $(this).data('childTag') !== undefined ? $(this).data('childTag') : 'div';
-		},
-
 		'childSelector': function()
 		{
-			return $(this).data('childSelector') !== undefined ? $(this).data('childSelector') : 'div':
+			return $(this).data('childSelector') !== undefined ? $(this).data('childSelector') : 'div';
 		},
 
 		// Add a new item to an element based on its data-prototype (from Symfony).
@@ -43,7 +38,6 @@
 			var prototype = $(parent).data('prototype');
 			var prototypeName = fnMap.resolvePrototypeName(prototype);
 
-			var childTag = $(parent).collectionManager('childTag');
 			var childSelector = $(parent).collectionManager('childSelector');
 
 			// Build prototype with new id.
@@ -57,9 +51,7 @@
 
 			// Build new element from the prototype.
 
-			var item = $('<' + childTag + '/>').html($(prototype).html());
-
-			item.insertBefore($(this));
+			var item = $(prototype).insertBefore($(this));
 
 			// Give the new element a delete button if allowed and update on it.
 
@@ -197,7 +189,7 @@
 				if($(this).collectionManager('isDeleteAllowed'))
 				{
 					var childSelector = $(this).collectionManager('childSelector');
-					var children = $(this).find(childSelector);
+					var children = $(this).find('> ' + childSelector);
 
 					children.each(function()
 					{

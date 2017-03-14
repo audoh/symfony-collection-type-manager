@@ -52,10 +52,12 @@
 
 			var id = $(parent).children(childSelector).length;
 
-	        // Replace __name__ with id.
+	        // Replace labels and then names with the id.
 
 	        var matchName = new RegExp(prototypeName, 'g');
-	        var prototype = prototype.replace(matchName, id);
+	        var matchLabel = new RegExp(prototypeName + 'label__', 'g');
+	        
+	        var prototype = prototype.replace(matchLabel, id).replace(matchName, id);
 
 			// Build new element from the prototype.
 

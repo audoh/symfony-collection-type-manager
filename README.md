@@ -7,10 +7,12 @@ The easiest way to get started with the CollectionType Manager is to simply incl
 
 ## Features
 
-- Create custom add and delete buttons by setting `data-adder-prototype` and `data-deleter-prototype`. The default is simply a button saying 'add' or 'delete'.
-- Change the child tag using `data-child-tag`. The default is 'div'.
+- Create custom add and delete buttons by setting `data-adder-prototype` and `data-deleter-prototype`.  
+  ***NOTE:** The default is simply a button saying 'add' or 'delete'.*
+- Change the child tag using `data-child-tag`. The default is 'div'.  
+  ***NOTE:** The default is 'div', which works for the default form template.*
 - Listen to `collection_add` and `collection_delete` events to react to user actions in other scripts.
-- Control whether to allow addition or deletion using the boolean attributes `data-allow-add` and `data-allow-delete`.
+- Fine-tune whether to allow addition or deletion using the boolean attributes `data-allow-add` and `data-allow-delete`.
 
 ## Future plans
 

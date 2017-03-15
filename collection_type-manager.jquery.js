@@ -40,17 +40,18 @@
 
 		// Add a new item to an element based on its data-prototype (from Symfony).
 
-		'addCollectionItem': function(parent)
+		'addCollectionItem': function()
 		{
 			// Get prototype data.
 
-			var prototype = $(parent).data('prototype');
-			var prototypeName = $(parent).collectionManager('prototypeName');
-			var childSelector = $(parent).collectionManager('childSelector');
+			var prototype = $(this).data('prototype');
+			var prototypeName = $(this).collectionManager('prototypeName');
+			var childSelector = $(this).collectionManager('childSelector');
 
 			// Build prototype with new id.
 
-			var id = $(parent).children(childSelector).length;
+			var curItems = $(this).children(childSelector);
+			var id = curItems.length;
 
 	        // Replace labels and then names with the id.
 
@@ -61,18 +62,18 @@
 
 			// Build new element from the prototype.
 
-			var item = $(prototype).insertBefore($(this));
+			var item = $(prototype).insertAfter(curItems.last());
 
 			// Give the new element a delete button if allowed and update on it.
 
-			if($(parent).collectionManager('isDeleteAllowed'))
+			if($(this).collectionManager('isDeleteAllowed'))
 				$(item).collectionManager('provideDeleteButton');
 
 			$(item).collectionManager('updateCollection');
 
 			// Trigger add event.
 
-			$(parent).trigger('collection_add');
+			$(this).trigger('collection_add');
 		},
 
 		// Return an add button element.
@@ -127,6 +128,22 @@
 			return button;
 		},
 
+		'addButtonClick': function()
+		{
+			var collection = $(this).parent();
+
+			$(collection).collectionManager('addCollectionItem');
+		},
+
+		'deleteButtonClick': function()
+		{
+			var deletable = $(this).parent();
+			var collection = $(deletable).parent();
+
+			$(deletable).remove();
+			$(collection).trigger('collection_delete');
+		},
+
 		// Creates an add button on `element` if one does not already exist.
 
 		'provideAddButton': function()
@@ -143,7 +160,7 @@
 					.appendTo(this)
 					.click(function()
 					{
-						$(this).collectionManager('addCollectionItem', parent);
+						$(this).collectionManager('addButtonClick');
 					})
 				;
 			}
@@ -163,8 +180,7 @@
 					.appendTo(this)
 					.click(function()
 					{
-						$(deletable).remove();
-						$(deletable).parent().trigger('collection_delete');
+						$(this).collectionManager('deleteButtonClick');
 					})
 				;
 			}

@@ -4,7 +4,7 @@
 { 
 	$.fn.collectionManager = function(fn, args)
 	{
-		return fnMap[fn].apply(this, args);
+		return (ret = fnMap[fn].apply(this, args)) !== undefined ? ret : $(this);
 	};
 
 	var fnMap =
@@ -96,7 +96,7 @@
 				;
 			}
 
-			button.addClass('collection_add');
+			button.addClass('collection_adder');
 
 			return button;
 		},
@@ -122,7 +122,7 @@
 				;
 			}
 
-			button.addClass('collection_delete');
+			button.addClass('collection_deleter');
 
 			return button;
 		},
@@ -131,7 +131,7 @@
 
 		'provideAddButton': function()
 		{
-			var needed = $(this).find('> .collection_add').length == 0;
+			var needed = $(this).find('> .collection_adder').length == 0;
 
 			if(needed)
 			{
@@ -153,7 +153,7 @@
 
 		'provideDeleteButton': function()
 		{
-			var needed = $(this).find('> .collection_delete').length == 0;
+			var needed = $(this).find('> .collection_deleter').length == 0;
 
 			if(needed)
 			{

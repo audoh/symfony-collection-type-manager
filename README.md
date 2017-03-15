@@ -17,6 +17,10 @@ The easiest way to get started with the CollectionType Manager is to simply incl
 
 ## Future plans
 
+### data-allow-delete-new
+
+How could someone be able to add new items and be able to undo those additions before submission, whilst not being able to delete old committed items? For this I am considering adding the boolean attribute `data-allow-delete-new`, which, when not false (i.e. true by default), will cause the plugin to add delete buttons to newly created items, even when `data-allow-delete` is false.
+
 ### Greater flexibility
 
 At present, the plugin currently assumes that the `data-prototype` attribute is on the immediate parent of a set of child elements matching the child selector, each of which represents an item in the CollectionType. This means that if you deviate from this, the plugin may behave in unexpected ways.
@@ -24,3 +28,5 @@ At present, the plugin currently assumes that the `data-prototype` attribute is 
 ## Notes
 
 This plugin uses the two class names `collection_adder` and `collection_deleter` to identify existing add and delete buttons, which you should avoid using within the parent element. This applies even when you use custom button prototypes.
+
+However, if you would like to manually add add/delete buttons with these classes, you can use `$(this).collectionManager('addButtonClick')` and `$(this).collectionManager('deleteButtonClick')` within their click listeners in order to still make use of the plugin.

@@ -13,13 +13,10 @@ The easiest way to get started with the CollectionType Manager is to simply incl
   ***NOTE:** The default is 'div', which works for the default form template.*
 - Listen to `collection_add` and `collection_delete` events to react to user actions in other scripts.
 - Fine-tune whether to allow addition or deletion using the boolean attributes `data-allow-add` and `data-allow-delete`.
+- Set `data-allow-delete-new` to false to disable delete buttons on new items.
 - Change the prototype name using `data-prototype-name` to allow for subprototypes.
 
 ## Future plans
-
-### data-allow-delete-new
-
-How could someone be able to add new items and be able to undo those additions before submission, whilst not being able to delete old committed items? For this I am considering adding the boolean attribute `data-allow-delete-new`, which, when not false (i.e. true by default), will cause the plugin to add delete buttons to newly created items, even when `data-allow-delete` is false.
 
 ### Greater flexibility
 

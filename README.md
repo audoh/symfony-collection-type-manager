@@ -17,6 +17,10 @@ The easiest way to get started with the CollectionType Manager is to simply incl
 
 ## Future plans
 
+### data-allow-delete-new
+
+How could someone be able to add new items and be able to undo those additions before submission, whilst not being able to delete old committed items? For this I propose the boolean attribute `data-allow-delete-new`, which, when true - which it will be by default - will cause the plugin to add delete buttons to newly created items, even when `data-allow-delete` is false.
+
 ### Greater flexibility
 
 At present, the plugin currently assumes that the `data-prototype` attribute is on the immediate parent of a set of child elements matching the child selector, each of which represents an item in the CollectionType. This means that if you deviate from this, the plugin may behave in unexpected ways.

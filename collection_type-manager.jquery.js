@@ -24,6 +24,11 @@
 			return $(this).data('allowAdd') === false ? false : true;
 		},
 
+		'isDeleteNewAllowed': function()
+		{
+			return $(this).data('allowDeleteNew') === false ? false : true;
+		},
+
 		// Find the CSS selector used to identify child item elements, defaults to div.
 
 		'childSelector': function()
@@ -66,7 +71,7 @@
 
 			// Give the new element a delete button if allowed and update on it.
 
-			if($(this).collectionManager('isDeleteAllowed'))
+			if($(this).collectionManager('isDeleteNewAllowed'))
 				$(item).collectionManager('provideDeleteButton');
 
 			$(item).collectionManager('updateCollection');

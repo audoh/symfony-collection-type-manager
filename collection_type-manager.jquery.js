@@ -33,7 +33,7 @@
 
 			'childSelector': function()
 			{
-				return $(this).data('itemSelector') !== undefined ? $(this).data('itemSelector') : 'div';
+				return '>' + ($(this).data('itemSelector') !== undefined ? $(this).data('itemSelector') : 'div');
 			},
 
 			// Find the name of the prototype to use, defaults to __name__.
@@ -41,6 +41,34 @@
 			'prototypeName': function()
 			{
 				return $(this).data('prototypeName') !== undefined ? $(this).data('prototypeName') : '__name__';
+			},
+
+			'insert': function(el)
+			{
+				// Try to find last element to insert after.
+
+				var childSelector = $(this).collectionManager('childSelector');
+				var lastChild = $(this).find(childSelector).last();
+
+				if(lastChild)
+				{
+					$(el).insertAfter(lastChild);
+					return;
+				}
+
+				// Try to find add button to insert before.
+
+				var addButton = $(this).find('.collection_adder').first();
+
+				if(addButton)
+				{
+					el.insertBefore(addButton);
+					return;
+				}
+
+				// Append to collection when all else fails.
+
+				el.appendTo($(this));
 			},
 
 			// Add a new item to an element based on its data-prototype (from Symfony).
@@ -55,8 +83,7 @@
 
 				// Build prototype with new id.
 
-				var curItems = $(this).children(childSelector);
-				var id = curItems.length;
+				var id = $(this).children(childSelector).length;
 
 				// Replace labels and then names with the id.
 
@@ -67,7 +94,9 @@
 
 				// Build new element from the prototype.
 
-				var item = $(prototype).insertBefore($(this).find('.collection_adder').first());
+				var item = $(prototype);
+
+				$(this).collectionManager('insert', item);
 
 				// Give the new element a delete button if allowed and update on it.
 
@@ -203,7 +232,7 @@
 					if($(this).collectionManager('isDeleteAllowed'))
 					{
 						var childSelector = $(this).collectionManager('childSelector');
-						var children = $(this).find('> ' + childSelector);
+						var children = $(this).find(childSelector);
 
 						children.each(function()
 						{

@@ -204,7 +204,7 @@
 						.appendTo(this)
 						.click(function()
 						{
-							$(deletable).collectionManager('deleteCollectionItem', deletable);
+							$(deletable).parent().collectionManager('deleteCollectionItem', deletable);
 						})
 					;
 				}

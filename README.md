@@ -33,12 +33,6 @@ Make sure that your chosen CSS selector can also select your prototype: if you a
 
 If you'd like to integrate other scripts with this manager, e.g. to update another script when an item gets added or send updates to an API automatically via AJAX, you can listen to the collection element's events `collection_add` and `collection_delete`.
 
-## Future plans
-
-### Greater flexibility
-
-At present, the plugin currently assumes that the `data-prototype` attribute is on the immediate parent of a set of child elements matching the child selector, each of which represents an item in the CollectionType. This means that if you deviate from this, the plugin may behave in unexpected ways.
-
 ## Notes
 
 ### Item insertion
@@ -51,3 +45,11 @@ The plugin currently has three simple strategies it uses to insert new items:
 ### Special 'reserved' classes
 
 This plugin uses the two class names `collection_adder` and `collection_deleter` to identify existing add and delete buttons, which you should avoid using within the parent element for anything except add and delete buttons.
+
+## Roadmap to v1.0.0
+
+### Improving the insertion strategy
+
+The current insertion strategy works for many cases, but is ultimately automatic. It will be confused if your collection is empty, doesn't contain an add button and you've got a div that you want to always be at the end of the collection element. In this instance, it will append new items to the collection element, after that div.
+
+The attribute `data-insert-after` perhaps makes little sense, as by default new items are added at the end. Perhaps another strategy will be added, which will be tried before any others: insert items before the first element matched by the selector `data-insert-before`.

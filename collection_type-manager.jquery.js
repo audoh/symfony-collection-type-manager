@@ -50,7 +50,7 @@
 				var childSelector = $(this).collectionManager('childSelector');
 				var lastChild = $(this).find(childSelector).last();
 
-				if(lastChild)
+				if(lastChild.length !== 0)
 				{
 					$(el).insertAfter(lastChild);
 					return;
@@ -60,9 +60,9 @@
 
 				var addButton = $(this).find('.collection_adder').first();
 
-				if(addButton)
+				if(addButton.length !== 0)
 				{
-					el.insertBefore(addButton);
+					$(el).insertBefore(addButton);
 					return;
 				}
 
@@ -95,6 +95,8 @@
 				// Build new element from the prototype.
 
 				var item = $(prototype);
+
+				console.log(item);
 
 				$(this).collectionManager('insert', item);
 

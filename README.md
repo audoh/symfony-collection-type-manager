@@ -17,9 +17,11 @@ By default, the user is allowed to delete items that they have created when `dat
 
 ## Handling CollectionTypes within CollectionTypes
 
-To handle CollectionTypes within CollectionTypes, you must first make the CollectionTypes' prototype names different. Symfony uses the `prototype_name` option as a placeholder in the prototype which automatically gets replaced with a number identifying that element in the collection. By default, the prototype name is `__name__` - set one of the CollectionTypes' prototype names to something other than this. Ensure your new name won't be confused with any other parts of the prototype string by surrounding it with double underscores or another similarly unambiguous character.
+To handle CollectionTypes within CollectionTypes, you must first make the CollectionTypes' prototype names different. Symfony uses the `prototype_name` option as a placeholder in the prototype, which automatically gets replaced with a number identifying that element in the collection.
 
-For the script, set `data-prototype-name` to match the `prototype_name`.
+By default, the prototype name is `__name__` - set one of the CollectionTypes' prototype names to something other than this. Ensure your new name won't be confused with any other parts of the prototype string by surrounding it with double underscores or another similarly unambiguous character.
+
+To configure the script, set `data-prototype-name` to match the corresponding `prototype_name`.
 
 ## Custom form themes or layouts
 

@@ -39,6 +39,13 @@ At present, the plugin currently assumes that the `data-prototype` attribute is 
 
 ## Notes
 
-This plugin uses the two class names `collection_adder` and `collection_deleter` to identify existing add and delete buttons, which you should avoid using within the parent element. This applies even when you use custom button prototypes.
+### Item insertion
 
-However, if you would like to manually add add/delete buttons with these classes, you can use `$(this).collectionManager('addButtonClick')` and `$(this).collectionManager('deleteButtonClick')` within their click listeners in order to still make use of the plugin.
+The plugin currently has three simple strategies it uses to insert new items:
+ - Insert after last item
+ - Insert before `.collection_adder`: typically when collection is empty
+ - Append to collection: typically when addition is not allowed, or you have set the button prototype to the empty string
+
+### Special 'reserved' classes
+
+This plugin uses the two class names `collection_adder` and `collection_deleter` to identify existing add and delete buttons, which you should avoid using within the parent element. This applies even when you use custom button prototypes.

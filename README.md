@@ -5,16 +5,29 @@ JQuery plugin to handle addition to and removal from Symfony CollectionTypes wit
 
 The easiest way to get started with the CollectionType Manager is to simply include the script in the page containing your form. It will automatically insert 'add' and 'delete' buttons into any form fragment containing either a `data-prototype` or the attribute `data-allow-remove="true"`.
 
-## Features
+## Overriding the default buttons
 
-- Create custom add and delete buttons by setting `data-adder-prototype` and `data-deleter-prototype`.  
-  ***NOTE:** The default is simply a button saying 'add' or 'delete'.*
-- Change how items are identified using the `data-item-selector` tag.  
-  ***NOTE:** The default is 'div', which works for the default form template.*
-- Listen to `collection_add` and `collection_delete` events to react to user actions in other scripts.
-- Fine-tune whether to allow addition or deletion using the boolean attributes `data-allow-add` and `data-allow-delete`.
-- Set `data-allow-delete-new` to false to disable delete buttons on new items.
-- Change the prototype name using `data-prototype-name` to allow for subprototypes.
+Use `data-adder-prototype` and `data-deleter-prototype` to override the default buttons. You can set these to an empty string if you would like to manually create the buttons yourself (e.g. to place them elsewhere).
+
+If you would like to disable addition and/or deletion entirely, don't set the prototypes to the empty string. Instead set `data-allow-add` and `data-allow-delete` to false.
+
+By default, the user is allowed to delete items that they have created when `data-allow-delete` is false. This behaviour is also disableable using `data-allow-delete-new`.
+
+## Handling CollectionTypes within CollectionTypes
+
+To handle CollectionTypes within CollectionTypes, you must first make the CollectionTypes' prototype names different. Symfony uses the `prototype_name` option as a placeholder in the prototype which automatically gets replaced with a number identifying that element in the collection. By default, the prototype name is `__name__` - set one of the CollectionTypes' prototype names to something other than this. Ensure your new name won't be confused with any other parts of the prototype string by surrounding it with double underscores or another similarly unambiguous character.
+
+For the script, set `data-prototype-name` to match the `prototype_name`.
+
+## Custom form themes or layouts
+
+By default, the script selects children by looking for `div` elements within the collection. If you have `div` elements which are not children, or your children are not `div` elements, you can set `data-item-selector` to change this behaviour. 
+
+Make sure that your chosen CSS selector can also select your prototype: if you are creating your child elements manually, then you may have to also create your prototype manually in the same way.
+
+## Integrating other scripts
+
+If you'd like to integrate other scripts with this manager, e.g. to update another script when an item gets added or send updates to an API automatically via AJAX, you can listen to the collection element's events `collection_add` and `collection_delete`.
 
 ## Future plans
 

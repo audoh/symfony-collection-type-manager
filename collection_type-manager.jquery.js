@@ -83,7 +83,7 @@
 
 				// Build prototype with new id.
 
-				var id = $(this).children(childSelector).length;
+				var id = $(this).find(childSelector).length;
 
 				// Replace labels and then names with the id.
 

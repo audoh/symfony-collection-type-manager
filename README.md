@@ -13,7 +13,7 @@ Use `data-adder-prototype` and `data-deleter-prototype` to override the default 
 
 If you would like to disable addition and/or deletion entirely, don't set the prototypes to the empty string. Instead set `data-allow-add` and `data-allow-delete` to false.
 
-By default, the user is allowed to delete items that they have created when `data-allow-delete` is false. This behaviour is also disableable using `data-allow-delete-new`.
+By default, the user is always allowed to delete items that they have just created, even when `data-allow-delete` is false. This behaviour is also disableable using `data-allow-delete-new`.
 
 ## Handling CollectionTypes within CollectionTypes
 

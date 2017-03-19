@@ -48,4 +48,4 @@ The plugin currently has three simple strategies it uses to insert new items:
 
 ### Special 'reserved' classes
 
-This plugin uses the two class names `collection_adder` and `collection_deleter` to identify existing add and delete buttons, which you should avoid using within the parent element. This applies even when you use custom button prototypes.
+This plugin uses the two class names `collection_adder` and `collection_deleter` to identify existing add and delete buttons, which you should avoid using within the parent element for anything except add and delete buttons.

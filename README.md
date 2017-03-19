@@ -42,9 +42,9 @@ At present, the plugin currently assumes that the `data-prototype` attribute is 
 ### Item insertion
 
 The plugin currently has three simple strategies it uses to insert new items:
- - Insert after last item
- - Insert before `.collection_adder`: typically when collection is empty
- - Append to collection: typically when addition is not allowed, or you have set the button prototype to the empty string
+ - **Insert after last item:** only when collection has items
+ - **Insert before `.collection_adder`:** when collection is empty but has an add button
+ - **Append to collection:** when collection is empty and has no add button
 
 ### Special 'reserved' classes
 

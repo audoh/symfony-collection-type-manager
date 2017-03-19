@@ -96,8 +96,6 @@
 
 				var item = $(prototype);
 
-				console.log(item);
-
 				$(this).collectionManager('insert', item);
 
 				// Give the new element a delete button if allowed and update on it.

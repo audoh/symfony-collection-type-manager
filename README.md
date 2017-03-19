@@ -7,7 +7,7 @@ The easiest way to get started with the CollectionType Manager is to simply incl
 
 ## Overriding the default buttons
 
-Use `data-adder-prototype` and `data-deleter-prototype` to override the default buttons. You can set these to an empty string if you would like to manually create the buttons yourself (e.g. to place them elsewhere). When doing so, call the manager methods in your custom buttons' click listeners: 
+Use `data-adder-prototype` and `data-deleter-prototype` to override the default buttons. You can set these to an empty string if you would like to manually create the buttons yourself (e.g. to place them elsewhere). When doing so, call the manager methods in your custom buttons' click listeners:  
   `$(collectionElement).collectionManager('addCollectionItem')`
   `$(collectionElement).collectionManager('deleteCollectionItem', itemToDelete)`.
 

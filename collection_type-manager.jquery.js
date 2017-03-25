@@ -29,6 +29,11 @@
 				return $(this).data('allowDeleteNew') === false ? false : true;
 			},
 
+			'confirmDelete': function()
+			{
+				return $(this).data('confirmDelete') === true ? true : false;
+			},
+
 			// Find the CSS selector used to identify child item elements, defaults to div.
 
 			'childSelector': function()
@@ -75,6 +80,10 @@
 
 			'addCollectionItem': function()
 			{
+				// Trigger before add event.
+
+				$(this).trigger('collection.preInsert', item);
+
 				// Get prototype data.
 
 				var prototype = $(this).data('prototype');
@@ -107,13 +116,14 @@
 
 				// Trigger add event.
 
-				$(this).trigger('collection_add', item);
+				$(this).trigger('collection.postInsert', item);
 			},
 
 			'deleteCollectionItem': function(item)
 			{
+				$(this).trigger('collection.preDelete', item);
 				$(item).remove();
-				$(this).trigger('collection_delete', item);
+				$(this).trigger('collection.postDelete', item);
 			},
 
 			// Return an add button element.

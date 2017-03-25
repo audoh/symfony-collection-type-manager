@@ -29,9 +29,18 @@ By default, the script selects children by looking for `div` elements within the
 
 Make sure that your chosen CSS selector can also select your prototype: if you are creating your child elements manually, then you may have to also create your prototype manually in the same way.
 
-## Integrating other scripts
+## AJAX, custom deletion confirmation messages, overriding add/delete, etc.
 
-If you'd like to integrate other scripts with this manager, e.g. to update another script when an item gets added or send updates to an API automatically via AJAX, you can listen to the collection element's events `collection_add` and `collection_delete`.
+To allow you to react to item creation and deletion, CollectionTypeManager provides you with four events, one before and one after each action. These are:
+
+- **collection.preInsert**
+- **collection.postInsert** 
+- **collection.preDelete** 
+- **collection.postDelete**
+
+In both preInsert and preDelete, you can call event.preventDefault() to stop the action from happening. This means you can implement your own confirmation messages, temporarily disable addition and deletion, etc. quite easily.
+
+With the exception of preInsert, the event object also includes the newly created item or item being deleted, which you can access via event.item.
 
 ## Notes
 

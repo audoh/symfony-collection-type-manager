@@ -1,4 +1,4 @@
-/* CollectionType-Manager by A. Udoh | MIT */
+/* CollectionType-Manager by A. Udoh | GPL */
 /* General-purpose solution for adding to and removing from Symfony CollectionTypes */
 (function($)
 {

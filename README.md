@@ -38,9 +38,9 @@ To allow you to react to item creation and deletion, CollectionTypeManager provi
 - **collection.preDelete** 
 - **collection.postDelete**
 
-In both preInsert and preDelete, you can call event.preventDefault() to stop the action from happening. This means you can implement your own confirmation messages, temporarily disable addition and deletion, etc. quite easily.
+In both preInsert and preDelete, you can call `event.preventDefault()` to stop the action from happening. This means you can, for example, change the delete prompt, or have a live-updated AJAX list which accurately reflects failed insertion attempts.
 
-With the exception of preInsert, the event object also includes the newly created item or item being deleted, which you can access via event.item.
+With the exception of preInsert, the event object also includes the newly created item or item being deleted, which you can access via `event.item`.
 
 ## Notes
 

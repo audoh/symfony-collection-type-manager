@@ -107,13 +107,13 @@
 
 				// Trigger add event.
 
-				$(this).trigger('collection_add');
+				$(this).trigger('collection_add', item);
 			},
 
 			'deleteCollectionItem': function(item)
 			{
 				$(item).remove();
-				$(this).trigger('collection_delete');
+				$(this).trigger('collection_delete', item);
 			},
 
 			// Return an add button element.

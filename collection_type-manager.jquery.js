@@ -7,6 +7,8 @@
 		return (ret = fnMap[fn].apply(this, args)) !== undefined ? ret : $(this);
 	};
 
+	var defDeleteMsg = "Are you sure?";
+
 	var fnMap =
 		{
 			'isDeleteAllowed': function()
@@ -31,14 +33,14 @@
 
 			'confirmDelete': function()
 			{
-				return $(this).data('confirmDelete') === true ? true : false;
+				return $(this).data('deleteConfirm') === true ? true : false;
 			},
 
 			'confirmMsg': function()
 			{
-				var user = $(this).data('confirmDeleteMsg');
+				var user = $(this).data('deleteMessage');
 
-				return user !== undefined ? user : "Are you sure?";
+				return user !== undefined ? user : defDeleteMsg;
 			},
 
 			// Find the CSS selector used to identify child item elements, defaults to div.
@@ -89,7 +91,7 @@
 			{
 				// Trigger before add event.
 
-				$(this).trigger('collection.preInsert', item);
+				$(this).trigger('collection.preInsert');
 
 				// Get prototype data.
 

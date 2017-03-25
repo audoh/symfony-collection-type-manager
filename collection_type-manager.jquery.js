@@ -36,7 +36,7 @@
 				return $(this).data('deleteConfirm') === true ? true : false;
 			},
 
-			'confirmMsg': function()
+			'deleteMessage': function()
 			{
 				var user = $(this).data('deleteMessage');
 
@@ -91,7 +91,13 @@
 			{
 				// Trigger before add event.
 
-				$(this).trigger('collection.preInsert');
+				var e = $.Event("collection.preInsert");
+				$(this).trigger(e);
+
+				// Check if stopped.
+
+				if(e.isDefaultPrevented())
+					return;
 
 				// Get prototype data.
 
@@ -125,22 +131,33 @@
 
 				// Trigger add event.
 
-				$(this).trigger('collection.postInsert', item);
+				$(this).trigger($.Event("collection.postInsert", { item: item }));
 			},
 
 			'deleteCollectionItem': function(item)
 			{
-				$(this).trigger('collection.preDelete', item);
+				// Trigger pre event.
+
+				var e = $.Event("collection.preDelete", { item: item });
+				$(this).trigger(e);
+
+				// Check if stopped.
+
+				if(e.isDefaultPrevented())
+					return;
 
 				// Prompt for confirmation if option is true.
 
-				var confirmMsg = $(this).collectionManager('confirmMsg');
+				if($(this).collectionManager('confirmDelete') && !confirm($(this).collectionManager('deleteMessage')))
+					return;
 
-				if($(this).collectionManager('confirmDelete') && !confirm(confirmMsg))
-					return false;
+				// Do removal.
 
 				$(item).remove();
-				$(this).trigger('collection.postDelete', item);
+
+				// Trigger post event.
+
+				$(this).trigger($.Event("collection.postDelete", { item: item }));
 			},
 
 			// Return an add button element.

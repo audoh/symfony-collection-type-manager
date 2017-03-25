@@ -34,6 +34,13 @@
 				return $(this).data('confirmDelete') === true ? true : false;
 			},
 
+			'confirmMsg': function()
+			{
+				var user = $(this).data('confirmDeleteMsg');
+
+				return user !== undefined ? user : "Are you sure?";
+			},
+
 			// Find the CSS selector used to identify child item elements, defaults to div.
 
 			'childSelector': function()
@@ -122,6 +129,14 @@
 			'deleteCollectionItem': function(item)
 			{
 				$(this).trigger('collection.preDelete', item);
+
+				// Prompt for confirmation if option is true.
+
+				var confirmMsg = $(this).collectionManager('confirmMsg');
+
+				if($(this).collectionManager('confirmDelete') && !confirm(confirmMsg))
+					return false;
+
 				$(item).remove();
 				$(this).trigger('collection.postDelete', item);
 			},
